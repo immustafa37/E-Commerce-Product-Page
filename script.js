@@ -94,3 +94,62 @@ function renderProducts(list) {
     productContainer.appendChild(productCard);
   });
 }
+
+// Filter products based on search and category
+function filterProducts() {
+    let filtered = [...products];
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const selectedCategory = categorySelect.value;
+  
+    if(searchTerm) {
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm)
+      );
+    }
+
+  if(selectedCategory !== "all") {
+    filtered = filtered.filter(product => product.category === selectedCategory);
+  }
+
+  return filtered;
+}
+
+// Sort products based on sort select value
+function sortProducts(list) {
+    const sortValue = sortSelect.value;
+    if(sortValue === "price-asc") {
+      list.sort((a, b) => a.price - b.price);
+    } else if(sortValue === "price-desc") {
+      list.sort((a, b) => b.price - a.price);
+    } else if(sortValue === "name-asc") {
+      list.sort((a, b) => a.name.localeCompare(b.name));
+    } else if(sortValue === "name-desc") {
+      list.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    return list;
+  }
+
+// Combined function to update product display
+function updateProducts() {
+    let filteredProducts = filterProducts();
+    let sortedProducts = sortProducts(filteredProducts);
+    renderProducts(sortedProducts);
+  }
+
+// Event Listeners
+searchInput.addEventListener('input', updateProducts);
+sortSelect.addEventListener('change', updateProducts);
+categorySelect.addEventListener('change', updateProducts);
+
+// Initial render
+renderProducts(products);
+
+// Simple add-to-cart simulation
+document.addEventListener('click', function(e) {
+  if(e.target && e.target.classList.contains('add-to-cart')) {
+    const productId = e.target.getAttribute('data-id');
+    const product = products.find(p => p.id == productId);
+    alert(`"${product.name}" has been added to your cart!`);
+  }
+});    
