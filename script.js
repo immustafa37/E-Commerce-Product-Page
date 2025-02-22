@@ -65,3 +65,32 @@ const products = [
         description: "A fun board game for all ages."
       }
     ];
+
+// Get DOM elements
+const productContainer = document.getElementById('productContainer');
+const searchInput = document.getElementById('searchInput');
+const sortSelect = document.getElementById('sortSelect');
+const categorySelect = document.getElementById('categorySelect');
+
+// Render products
+function renderProducts(list) {
+    productContainer.innerHTML = "";
+    if(list.length === 0) {
+      productContainer.innerHTML = "<p>No products found.</p>";
+      return;
+    }
+    list.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+      productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <div class="product-details">
+        <h3>${product.name}</h3>
+        <p class="price">$${product.price}</p>
+        <p>${product.description}</p>
+        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+      </div>
+    `;
+    productContainer.appendChild(productCard);
+  });
+}
