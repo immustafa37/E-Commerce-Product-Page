@@ -7,32 +7,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>E-Commerce Store</h1>
-        <div class="controls">
-          <input type="text" id="searchInput" placeholder="Search products...">
-          <select id="sortSelect">
-            <option value="">Sort By</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name-asc">Name: A to Z</option>
-            <option value="name-desc">Name: Z to A</option>
-          </select>
-          <select id="categorySelect">
-            <option value="all">All Categories</option>
-            <option value="electronics">Electronics</option>
-            <option value="fashion">Fashion</option>
-            <option value="home">Home</option>
-            <option value="toys">Toys</option>
-          </select>
-        </div>
-      </header>
+  <header>
+    <div class="header-top">
+      <h1>E-Commerce Store</h1>
+      <div class="cart">
+        <img src="images/add-to-cart.png" alt="Cart">
+        <span id="cartCount">0</span>
+      </div>
+    </div>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search products...">
+      <select id="sortSelect">
+        <option value="">Sort By</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A to Z</option>
+        <option value="name-desc">Name: Z to A</option>
+      </select>
+      <select id="categorySelect">
+        <option value="all">All Categories</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+        <option value="home">Home</option>
+        <option value="toys">Toys</option>
+      </select>
+    </div>
+  </header>
 
   <main>
     <div id="productContainer" class="product-container">
       <!-- Product cards will be injected here -->
     </div>
   </main>
+
   <footer>
     <p>&copy; 2025 E-Commerce Store. All rights reserved.</p>
   </footer>
